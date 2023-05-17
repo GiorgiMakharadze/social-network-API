@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteUser = exports.changeUser = exports.makeUser = exports.getUser = exports.getAllUsers = void 0;
+const getAllUsers = async (req, res) => { };
+exports.getAllUsers = getAllUsers;
+const getUser = async (req, res) => { };
+exports.getUser = getUser;
+const makeUser = async (req, res) => { };
+exports.makeUser = makeUser;
+const changeUser = async (req, res) => { };
+exports.changeUser = changeUser;
+const deleteUser = async (req, res) => { };
+exports.deleteUser = deleteUser;

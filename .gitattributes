@@ -1,0 +1,4 @@
+*.sql linguist-detectable=true
+*.sql linguist-language=SQL
+*.js linguist-detectable=true
+*.ts linguist-detectable=true linguist-language=TypeScript
