@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
 import UserRepo from "../repos/user-repo";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   const users = await UserRepo.find();
 
-  res.send(users);
+  res.status(StatusCodes.OK).json({ msg: "All users", users });
 };
 
 export const getUser = async (req: Request, res: Response) => {};

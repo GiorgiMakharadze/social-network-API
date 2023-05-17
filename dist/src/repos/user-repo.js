@@ -4,10 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const pool_1 = __importDefault(require("../pool"));
+const toCamelCase_1 = __importDefault(require("./utils/toCamelCase"));
 class UserRepo {
     static async find() {
         const { rows } = await pool_1.default.query("SELECT * FROM users;");
-        return rows;
+        return (0, toCamelCase_1.default)(rows);
     }
     static async findById() { }
     static async insert() { }

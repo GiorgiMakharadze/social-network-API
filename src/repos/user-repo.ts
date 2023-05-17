@@ -1,10 +1,11 @@
 import pool from "../pool";
+import toCamelCase from "./utils/toCamelCase";
 
 class UserRepo {
   static async find() {
     const { rows }: any = await pool.query("SELECT * FROM users;");
 
-    return rows;
+    return toCamelCase(rows);
   }
 
   static async findById() {}
