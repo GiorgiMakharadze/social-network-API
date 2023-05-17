@@ -46,7 +46,17 @@ class UserRepo {
 
     return toCamelCase(rows)[0];
   }
-  static async delete() {}
+  static async delete(id: string) {
+    const result = await pool.query(
+      `
+      DELETE FROM users WHERE id = $1;
+    `,
+      [id]
+    );
+    const { rows }: { rows: IUser[] } = result || { rows: [] };
+
+    return toCamelCase(rows)[0];
+  }
 }
 
 export default UserRepo;

@@ -41,4 +41,14 @@ export const changeUser = async (req: Request, res: Response) => {
 
   res.status(StatusCodes.OK).json({ msg: "User updated!", user });
 };
-export const deleteUser = async (req: Request, res: Response) => {};
+export const deleteUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const user = await UserRepo.delete(id);
+
+  if (!user) {
+    throw new NotFoundError(`No user with id: ${id} to delete`);
+  }
+
+  res.status(StatusCodes.OK).json({ msg: "User deleted!" });
+};

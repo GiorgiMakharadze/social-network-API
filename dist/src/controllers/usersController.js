@@ -37,5 +37,12 @@ const changeUser = async (req, res) => {
     res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "User updated!", user });
 };
 exports.changeUser = changeUser;
-const deleteUser = async (req, res) => { };
+const deleteUser = async (req, res) => {
+    const { id } = req.params;
+    const user = await userRepo_1.default.delete(id);
+    if (!user) {
+        throw new errors_1.NotFoundError(`No user with id: ${id} to delete`);
+    }
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "User deleted!" });
+};
 exports.deleteUser = deleteUser;

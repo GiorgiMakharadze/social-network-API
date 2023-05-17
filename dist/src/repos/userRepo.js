@@ -28,6 +28,12 @@ class UserRepo {
         const { rows } = result || { rows: [] };
         return (0, toCamelCase_1.default)(rows)[0];
     }
-    static async delete() { }
+    static async delete(id) {
+        const result = await pool_1.default.query(`
+      DELETE FROM users WHERE id = $1;
+    `, [id]);
+        const { rows } = result || { rows: [] };
+        return (0, toCamelCase_1.default)(rows)[0];
+    }
 }
 exports.default = UserRepo;
