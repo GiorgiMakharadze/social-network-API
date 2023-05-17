@@ -1,4 +1,5 @@
 import request from "supertest";
+import "dotenv/config";
 import createApp from "../../app";
 import UserRepo from "../../repos/userRepo";
 import pool from "../../pool";
@@ -7,7 +8,7 @@ beforeAll(() => {
   return pool.connect({
     host: "localhost",
     port: 5432,
-    database: "socialnetwork",
+    database: "socialnetwork-test",
     user: process.env.PGUSER,
     password: process.env.PGPASSWORD,
   });
@@ -19,13 +20,12 @@ afterAll(() => {
 
 it("create a user", async () => {
   const startingCount = await UserRepo.count();
-  expect(startingCount).toEqual(0);
 
   await request(createApp())
     .post("/users")
     .send({ username: "testuser", bio: "test bio" })
-    .expect(200);
+    .expect(201);
 
   const finishCount = await UserRepo.count();
-  expect(finishCount).toEqual(1);
+  expect(finishCount - startingCount).toEqual(1);
 });

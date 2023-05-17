@@ -62,7 +62,7 @@ class UserRepo {
     const result = await pool.query("SELECT COUNT(*) FROM users;");
     const { rows }: { rows: IUser[] } = result || { rows: [] };
 
-    return rows[0].count;
+    return parseInt(rows[0].count);
   }
 }
 
