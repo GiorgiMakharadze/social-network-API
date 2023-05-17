@@ -9,7 +9,7 @@ const pool_1 = __importDefault(require("./src/pool"));
 const port = process.env.PORT || 3005;
 pool_1.default
     .connect({
-    host: "localdadadadhost",
+    host: "localhost",
     port: 5432,
     database: "socialnetwork",
     user: process.env.PGUSER,

@@ -12,5 +12,13 @@ class CustomPool {
         this._pool = new pg_1.default.Pool(options);
         return this._pool.query("SELECT 1+1;");
     }
+    close() {
+        var _a;
+        return (_a = this._pool) === null || _a === void 0 ? void 0 : _a.end();
+    }
+    query(sql) {
+        var _a;
+        return (_a = this._pool) === null || _a === void 0 ? void 0 : _a.query(sql);
+    }
 }
 exports.default = new CustomPool();
