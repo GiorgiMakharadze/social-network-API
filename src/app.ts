@@ -1,7 +1,7 @@
 import express from "express";
 import "express-async-errors";
 import usersRouter from "./routes/users";
-import { notFoundMiddleware, errorHandlerMiddleware } from "../middleware";
+import { notFoundMiddleware, errorHandlerMiddleware } from "./middleware";
 
 const createApp = () => {
   const app = express();

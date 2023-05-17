@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.changeUser = exports.insertUser = exports.getUser = exports.getAllUsers = void 0;
 const http_status_codes_1 = require("http-status-codes");
 const userRepo_1 = __importDefault(require("../repos/userRepo"));
-const errors_1 = require("../../errors");
+const errors_1 = require("../errors");
 const getAllUsers = async (req, res) => {
     const users = await userRepo_1.default.find();
     res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "All users", users });

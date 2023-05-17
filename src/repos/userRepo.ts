@@ -5,6 +5,7 @@ interface IUser {
   id: number;
   username: string;
   bio: string;
+  count: any;
 }
 
 class UserRepo {
@@ -54,8 +55,14 @@ class UserRepo {
       [id]
     );
     const { rows }: { rows: IUser[] } = result || { rows: [] };
-
     return toCamelCase(rows)[0];
+  }
+
+  static async count() {
+    const result = await pool.query("SELECT COUNT(*) FROM users;");
+    const { rows }: { rows: IUser[] } = result || { rows: [] };
+
+    return rows[0].count;
   }
 }
 

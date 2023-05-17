@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import UserRepo from "../repos/userRepo";
-import { NotFoundError } from "../../errors";
+import { NotFoundError } from "../errors";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   const users = await UserRepo.find();
