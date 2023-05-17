@@ -21,7 +21,13 @@ class UserRepo {
         const { rows } = result || { rows: [] };
         return (0, toCamelCase_1.default)(rows)[0];
     }
-    static async update() { }
+    static async update(id, username, bio) {
+        const result = await pool_1.default.query(`
+      UPDATE users SET username = $1, bio = $2 WHERE id = $3 RETURNING *;
+    `, [username, bio, id]);
+        const { rows } = result || { rows: [] };
+        return (0, toCamelCase_1.default)(rows)[0];
+    }
     static async delete() { }
 }
 exports.default = UserRepo;

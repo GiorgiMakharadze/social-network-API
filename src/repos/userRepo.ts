@@ -16,7 +16,7 @@ class UserRepo {
     return toCamelCase(rows);
   }
 
-  static async findById(id: number) {
+  static async findById(id: string) {
     const result = await pool.query(`SELECT * FROM users WHERE id = $1;`, [id]);
 
     const { rows }: { rows: IUser[] } = result || { rows: [] };
@@ -34,7 +34,18 @@ class UserRepo {
 
     return toCamelCase(rows)[0];
   }
-  static async update() {}
+  static async update(id: string, username: string, bio: string) {
+    const result = await pool.query(
+      `
+      UPDATE users SET username = $1, bio = $2 WHERE id = $3 RETURNING *;
+    `,
+      [username, bio, id]
+    );
+
+    const { rows }: { rows: IUser[] } = result || { rows: [] };
+
+    return toCamelCase(rows)[0];
+  }
   static async delete() {}
 }
 

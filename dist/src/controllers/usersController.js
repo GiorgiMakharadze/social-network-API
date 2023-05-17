@@ -27,7 +27,15 @@ const insertUser = async (req, res) => {
     res.status(http_status_codes_1.StatusCodes.CREATED).json({ msg: "New user created!", user });
 };
 exports.insertUser = insertUser;
-const changeUser = async (req, res) => { };
+const changeUser = async (req, res) => {
+    const { id } = req.params;
+    const { username, bio } = req.body;
+    const user = await userRepo_1.default.update(id, username, bio);
+    if (!user) {
+        throw new errors_1.NotFoundError(`No user with id: ${id} to update`);
+    }
+    res.status(http_status_codes_1.StatusCodes.OK).json({ msg: "User updated!", user });
+};
 exports.changeUser = changeUser;
 const deleteUser = async (req, res) => { };
 exports.deleteUser = deleteUser;
