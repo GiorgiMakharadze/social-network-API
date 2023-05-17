@@ -16,9 +16,9 @@ class CustomPool {
         var _a;
         return (_a = this._pool) === null || _a === void 0 ? void 0 : _a.end();
     }
-    query(sql) {
+    query(sql, params) {
         var _a;
-        return (_a = this._pool) === null || _a === void 0 ? void 0 : _a.query(sql);
+        return (_a = this._pool) === null || _a === void 0 ? void 0 : _a.query(sql, params);
     }
 }
 exports.default = new CustomPool();

@@ -12,8 +12,8 @@ class CustomPool {
     return this._pool?.end();
   }
 
-  query(sql: string) {
-    return this._pool?.query(sql);
+  query(sql: string, params?: number[] | string[]) {
+    return this._pool?.query(sql, params);
   }
 }
 

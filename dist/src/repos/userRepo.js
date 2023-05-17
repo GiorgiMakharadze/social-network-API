@@ -11,9 +11,7 @@ class UserRepo {
         return (0, toCamelCase_1.default)(rows);
     }
     static async findById(id) {
-        const { rows } = await pool_1.default.query(`
-      SELECT * FROM users WHERE id = ${id};
-    `);
+        const { rows } = await pool_1.default.query(`SELECT * FROM users WHERE id = $1;`, [id]);
         return (0, toCamelCase_1.default)(rows)[0];
     }
     static async insert() { }
