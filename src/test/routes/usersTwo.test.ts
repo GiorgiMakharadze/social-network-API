@@ -2,20 +2,20 @@ import request from "supertest";
 import "dotenv/config";
 import createApp from "../../app";
 import UserRepo from "../../repos/userRepo";
-import pool from "../../pool";
+import Context from "../context";
 
-beforeAll(() => {
-  return pool.connect({
-    host: "localhost",
-    port: 5432,
-    database: "socialnetwork-test",
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-  });
+let context: Context;
+
+beforeAll(async () => {
+  context = await Context.build();
+});
+
+beforeEach(async () => {
+  await context.reset();
 });
 
 afterAll(() => {
-  return pool.close();
+  return context.close();
 });
 
 it("create a user", async () => {

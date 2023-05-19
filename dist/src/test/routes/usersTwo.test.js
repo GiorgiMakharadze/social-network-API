@@ -7,18 +7,16 @@ const supertest_1 = __importDefault(require("supertest"));
 require("dotenv/config");
 const app_1 = __importDefault(require("../../app"));
 const userRepo_1 = __importDefault(require("../../repos/userRepo"));
-const pool_1 = __importDefault(require("../../pool"));
-beforeAll(() => {
-    return pool_1.default.connect({
-        host: "localhost",
-        port: 5432,
-        database: "socialnetwork-test",
-        user: process.env.PGUSER,
-        password: process.env.PGPASSWORD,
-    });
+const context_1 = __importDefault(require("../context"));
+let context;
+beforeAll(async () => {
+    context = await context_1.default.build();
+});
+beforeEach(async () => {
+    await context.reset();
 });
 afterAll(() => {
-    return pool_1.default.close();
+    return context.close();
 });
 it("create a user", async () => {
     const startingCount = await userRepo_1.default.count();
